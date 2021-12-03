@@ -13,6 +13,7 @@ import (
 type Submarine struct {
 	position int
 	depth    int
+	aim      int
 }
 
 func (s *Submarine) exec(c []string) error {
@@ -28,12 +29,13 @@ func (s *Submarine) exec(c []string) error {
 	switch commandType {
 	case "forward":
 		s.position += commandValue
+		s.depth += s.aim * commandValue
 		return nil
 	case "down":
-		s.depth += commandValue
+		s.aim += commandValue
 		return nil
 	case "up":
-		s.depth -= commandValue
+		s.aim -= commandValue
 		return nil
 	}
 
